@@ -1,11 +1,5 @@
 import propTypes from "prop-types";
-
-function formatCurrency(value) {
-  return new Intl.NumberFormat("en", {
-    style: "currency",
-    currency: "EUR",
-  }).format(value);
-}
+import { formatCurrency } from "../../utils/helpers";
 
 MenuItem.propTypes = {
   pizza: propTypes.shape({
