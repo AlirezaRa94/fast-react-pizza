@@ -20,3 +20,10 @@ export function calcMinutesLeft(dateStr) {
   // 60000 ms in a minute
   return Math.round((d2 - d1) / 60000);
 }
+
+// https://uibakery.io/regex-library/phone-number
+export function isValidPhone(str) {
+  return /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
+    str
+  );
+}
