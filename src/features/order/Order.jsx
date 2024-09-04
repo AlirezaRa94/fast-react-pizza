@@ -17,8 +17,6 @@ function Order() {
     order;
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
-  console.log(priority);
-
   return (
     <div>
       <div>
