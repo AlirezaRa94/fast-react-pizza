@@ -1,6 +1,6 @@
 function UserName() {
   return (
-    <div className="hidden text-sm font-semibold text-yellow-50 md:block">
+    <div className="hidden text-sm font-semibold text-stone-900 md:block">
       Alireza
     </div>
   );
