@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 import LinkButton from "../../ui/LinkButton";
 import Button from "../../ui/Button";
 import CartItem from "./CartItem";
+import { getCart } from "./cartSlice";
 
 function Cart() {
-  const cart = [];
+  const cart = useSelector(getCart);
   const username = useSelector((state) => state.user.username);
 
   return (
