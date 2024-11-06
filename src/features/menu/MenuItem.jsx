@@ -1,9 +1,10 @@
 import propTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { formatCurrency } from "../../utils/helpers";
 import Button from "../../ui/Button";
-import { addItem } from "../cart/cartSlice";
+import { addItem, getItemQuantity } from "../cart/cartSlice";
+import RemoveCartItem from "../cart/RemoveCartItem";
 
 MenuItem.propTypes = {
   pizza: propTypes.shape({
@@ -19,6 +20,8 @@ MenuItem.propTypes = {
 function MenuItem({ pizza }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
   const dispath = useDispatch();
+  const currentQuantity = useSelector(getItemQuantity(id));
+  const isInCart = currentQuantity > 0;
 
   function handleAddToCart(e) {
     e.preventDefault();
@@ -55,7 +58,9 @@ function MenuItem({ pizza }) {
             </p>
           )}
 
-          {!soldOut && (
+          {isInCart && <RemoveCartItem pizzaId={id} />}
+
+          {!soldOut && !isInCart && (
             <Button type="small" onClick={handleAddToCart}>
               Add to Cart
             </Button>

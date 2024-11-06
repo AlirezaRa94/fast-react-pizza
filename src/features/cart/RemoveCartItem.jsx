@@ -4,11 +4,11 @@ import Button from "../../ui/Button";
 import { useDispatch } from "react-redux";
 import { removeItem } from "./cartSlice";
 
-RemoveItemButton.propTypes = {
+RemoveCartItem.propTypes = {
   pizzaId: propTypes.number.isRequired,
 };
 
-function RemoveItemButton({ pizzaId }) {
+function RemoveCartItem({ pizzaId }) {
   const dispath = useDispatch();
 
   return (
@@ -18,4 +18,4 @@ function RemoveItemButton({ pizzaId }) {
   );
 }
 
-export default RemoveItemButton;
+export default RemoveCartItem;
