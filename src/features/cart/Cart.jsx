@@ -5,11 +5,14 @@ import Button from "../../ui/Button";
 import CartItem from "./CartItem";
 import { clearCart, getCart } from "./cartSlice";
 import { getUsername } from "../user/userSlice";
+import EmptyCart from "./EmptyCart";
 
 function Cart() {
   const cart = useSelector(getCart);
   const username = useSelector(getUsername);
   const dispatch = useDispatch();
+
+  if (cart.length === 0) return <EmptyCart />;
 
   return (
     <div className="px-4 py-3">
