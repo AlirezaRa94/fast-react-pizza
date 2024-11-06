@@ -5,6 +5,7 @@ import { formatCurrency } from "../../utils/helpers";
 import Button from "../../ui/Button";
 import { addItem, getItemQuantity } from "../cart/cartSlice";
 import RemoveCartItem from "../cart/RemoveCartItem";
+import UpdateCartItemQuantity from "../cart/UpdateCartItemQuantity";
 
 MenuItem.propTypes = {
   pizza: propTypes.shape({
@@ -58,7 +59,15 @@ function MenuItem({ pizza }) {
             </p>
           )}
 
-          {isInCart && <RemoveCartItem pizzaId={id} />}
+          {isInCart && (
+            <div className="flex items-center gap-3 sm:gap-8">
+              <UpdateCartItemQuantity
+                pizzaId={id}
+                currentQuantity={currentQuantity}
+              />
+              <RemoveCartItem pizzaId={id} />
+            </div>
+          )}
 
           {!soldOut && !isInCart && (
             <Button type="small" onClick={handleAddToCart}>
