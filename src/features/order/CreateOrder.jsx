@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { createOrder } from "../../services/apiRestaurant";
 import { isValidPhone } from "../../utils/helpers";
 import Button from "../../ui/Button";
+import { getUsername } from "../user/userSlice";
 
 function CreateOrder() {
   const navigation = useNavigation();
@@ -12,7 +13,7 @@ function CreateOrder() {
   const formErrors = useActionData();
 
   const cart = [];
-  const username = useSelector((state) => state.user.username);
+  const username = useSelector(getUsername);
 
   return (
     <div className="px-4 py-6">

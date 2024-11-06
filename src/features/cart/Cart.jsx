@@ -4,10 +4,11 @@ import LinkButton from "../../ui/LinkButton";
 import Button from "../../ui/Button";
 import CartItem from "./CartItem";
 import { getCart } from "./cartSlice";
+import { getUsername } from "../user/userSlice";
 
 function Cart() {
   const cart = useSelector(getCart);
-  const username = useSelector((state) => state.user.username);
+  const username = useSelector(getUsername);
 
   return (
     <div className="px-4 py-3">
