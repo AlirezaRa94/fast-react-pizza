@@ -120,6 +120,15 @@ function CreateOrder() {
 
         <div className="flex items-center gap-3 md:gap-6">
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
+          <input
+            type="hidden"
+            name="position"
+            value={
+              position.latitude && position.longitude
+                ? `${position.latitude}, ${position.longitude}`
+                : ""
+            }
+          />
           <Button disabled={isSubmitting || isLoadingAddress} type="primary">
             {isSubmitting ? "Placing order..." : "Order Now"}
           </Button>
@@ -140,6 +149,7 @@ export async function action({ request }) {
   const order = {
     ...data,
     cart: JSON.parse(data.cart),
+    position: data.position,
     priority: data.priority === "on",
   };
 
