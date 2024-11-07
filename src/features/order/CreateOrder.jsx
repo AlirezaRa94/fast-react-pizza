@@ -5,6 +5,9 @@ import { createOrder } from "../../services/apiRestaurant";
 import { isValidPhone } from "../../utils/helpers";
 import Button from "../../ui/Button";
 import { getUsername } from "../user/userSlice";
+import { clearCart, getCart } from "../cart/cartSlice";
+import EmptyCart from "../cart/EmptyCart";
+import store from "../../store";
 
 function CreateOrder() {
   const navigation = useNavigation();
@@ -12,8 +15,10 @@ function CreateOrder() {
 
   const formErrors = useActionData();
 
-  const cart = [];
+  const cart = useSelector(getCart);
   const username = useSelector(getUsername);
+
+  if (cart.length === 0) return <EmptyCart />;
 
   return (
     <div className="px-4 py-6">
@@ -96,6 +101,9 @@ export async function action({ request }) {
   if (Object.keys(errors).length > 0) return errors;
 
   const newOrder = await createOrder(order);
+
+  // Do not overuse store.dispatch in actions
+  store.dispatch(clearCart());
 
   return redirect(`/order/${newOrder.id}`);
 }
